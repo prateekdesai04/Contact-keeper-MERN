@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://prateek-master:prateek123@contactkeeper.hyxfs.mongodb.net/master?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://prateek-master:prateek123@contactkeeper.hyxfs.mongodb.net/master?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
 }
