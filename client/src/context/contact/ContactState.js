@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
 import {
@@ -30,24 +30,38 @@ const ContactState = (props) => {
         type: 'personal',
       },
       {
-        id: 1,
+        id: 3,
         name: 'Poorvi',
         email: 'poorvi@123.com',
         phone: '111-111-333',
         type: 'professional',
       },
     ], // this is where you make the request to the backend and put contacts
+    current: null, // once you click edit, that contact's detail should come to this state
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState); // state allows us to access anything in the state and dispatch allows us to dispatch any object to the reducer
 
   // add contact
+  const addContact = (contact) => {
+    contact.id = uuidv4();
+    dispatch({ type: ADD_CONTACT, payload: contact }); //dispatch action
+  };
 
   // delete contact
+  const deleteContact = (id) => {
+    dispatch({ type: DELETE_CONTACT, payload: id }); //dispatch action
+  };
 
   // set current contact
+  const setCurrent = (contact) => {
+    dispatch({ type: SET_CURRENT, payload: contact }); //dispatch action
+  };
 
   // clear current contact
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT }); //dispatch action
+  };
 
   // update contact
 
@@ -59,6 +73,11 @@ const ContactState = (props) => {
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
+        current: state.current,
+        addContact,
+        deleteContact,
+        setCurrent,
+        clearCurrent,
       }}
     >
       {props.children}
