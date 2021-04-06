@@ -38,6 +38,7 @@ const ContactState = (props) => {
       },
     ], // this is where you make the request to the backend and put contacts
     current: null, // once you click edit, that contact's detail should come to this state
+    filtered: null, // an array of filtered contacts
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState); // state allows us to access anything in the state and dispatch allows us to dispatch any object to the reducer
@@ -64,20 +65,34 @@ const ContactState = (props) => {
   };
 
   // update contact
+  const updateContact = (contact) => {
+    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  };
 
   // filter contacts
+  const filterContacts = (text) => {
+    // take text to filter
+    dispatch({ type: FILTER_CONTACTS, payload: text });
+  };
 
   // clear filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER }); //dispatch action
+  };
 
   return (
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
         current: state.current,
+        filtered: state.filtered,
         addContact,
         deleteContact,
         setCurrent,
         clearCurrent,
+        updateContact,
+        filterContacts,
+        clearFilter,
       }}
     >
       {props.children}
