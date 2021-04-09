@@ -7,6 +7,6 @@ Uses JWT for authentication purposes.
 
 ## Features
 
--The user can register and add contacts
--The user can edit as well as delete contacts 
--The user can filter contacts 
+- The user can register and add contacts
+- The user can edit as well as delete contacts 
+- The user can filter contacts 
