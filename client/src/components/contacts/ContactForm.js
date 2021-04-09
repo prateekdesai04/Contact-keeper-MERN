@@ -29,7 +29,7 @@ const ContactForm = () => {
   const { name, email, phone, type } = contact;
 
   const onChange = (e) =>
-    setContact({ ...contact, [e.target.name]: [e.target.value] }); // e is the event parameter
+    setContact({ ...contact, [e.target.name]: e.target.value }); // e is the event parameter //fixed as suggested by Leonidas
 
   const onSubmit = (e) => {
     e.preventDefault(); // prevents form submission
