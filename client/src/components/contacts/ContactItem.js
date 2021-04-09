@@ -6,10 +6,10 @@ const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext; // pulling out an action
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const onDelete = (e) => {
-    deleteContact(id);
+    deleteContact(_id); //mongo has _id and not id
     clearCurrent();
   };
 
